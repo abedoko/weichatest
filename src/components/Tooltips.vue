@@ -19,13 +19,17 @@
   .speech-bubble1 {
     position: relative;
     background-color: #6b6f77;
-    width: 96px;
+    min-width: 96px;
     height: 32px;
-    line-height: 28px; /* 垂直居中 */
+    line-height: 32px; /* 垂直居中 */
     color: white;
     display: block;
     font-size: 14px;
     text-align: center;
+    z-index: 9;
+    display: inline-block;
+    padding: 0 5px;
+    border-radius: 2px;
   }
 
   .speech-bubble1:after {

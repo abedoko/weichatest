@@ -153,11 +153,11 @@
     <div class="detail_body" v-if="state === 'fundinfo'">
       <div class="refund_detail ui-justify bgf plr5b bordert1ddd borderb1ddd color999">
         <ul class="detail_main">
-          <li><p>资产总规模(万)：</p></li><li><p>{{dataStep.asset_quota}}</p></li>
-          <li><p>通过平台募集(万)：</p></li><li><p>{{dataStep.sum_quota}}</p></li>
-          <li><p>平台募集占比率：</p></li><li><p>{{dataStep.proportion + '%'}}</p></li>
-          <li><p>机构数：</p></li><li><p>{{dataStep.sum_org}}</p></li>
-          <li><p>需付利息(万)：</p></li><li><p>{{dataStep.sum_interest}}</p></li>
+          <li><p>资产总规模(万)：</p></li><li><p>{{dataStep.asset_quota ? dataStep.asset_quota : '暂无'}}</p></li>
+          <li><p>通过平台募集(万)：</p></li><li><p>{{dataStep.sum_quota ? dataStep.sum_quota : '暂无'}}</p></li>
+          <li><p>平台募集占比率：</p></li><li><p>{{dataStep.proportion ? dataStep.proportion + '%' : '暂无'}}</p></li>
+          <li><p>机构数：</p></li><li><p>{{dataStep.sum_org?dataStep.sum_org:'暂无'}}</p></li>
+          <li><p>需付利息(万)：</p></li><li><p>{{dataStep.sum_interest?dataStep.sum_interest:'暂无'}}</p></li>
         </ul>
       </div>
       <div v-for="a in dataStep.list" class="refund_detail ui-justify mt10 bgf plr5b bordert1ddd borderb1ddd">
@@ -216,7 +216,7 @@
           if (transition.to.params.assetoid) {
             that.assetOid = transition.to.params.assetoid
           } else {
-            that.assetOid = that.assetOidfirst[0].oid
+            that.assetOid = that.assetOidfirst ? that.assetOidfirst[0].oid : null
           }
           if (that.state === 'paydetail') {
             action.assetSearch(that.assetOid, false, function (res) {
@@ -384,9 +384,9 @@
 .state_box {
   p {border-radius:18px;
   background:#ea7e5a;
-  display:inline-block;}
+  display:inline-block;
+  padding:6px 20px;}
   color:#fff;
-  padding:6px 20px;
 }
 .step_date {
   width:60px;

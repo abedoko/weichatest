@@ -3,11 +3,15 @@
     <div class="log_box mt10">
       <div class="input_line linebok_p">
         <div class="log_left">账户</div>
-        <div class="log_right"><input type="text" v-model="userName" placeholder="请输入您的邮箱"></div>
+        <div class="log_right"><input type="text" v-model="userName" placeholder="请输入您的邮箱">
+          <poptips v-if="showEmail" :msg="errorEmail" placement="top-left"></poptips>
+        </div>
       </div>
       <div class="input_line linebok_p borderb1ddd">
         <div class="log_left">登陆密码</div>
-        <div class="log_right"><input class="pwdswtich" type="password" v-model="password" placeholder="请输入您的密码"></div>
+        <div class="log_right"><input class="pwdswtich" type="password" v-model="password" placeholder="请输入您的密码" @focus="doKeyBinding">
+          <poptips v-if="showPass" :msg="errorPass" placement="top-left"></poptips>
+        </div>
       </div>
       <p class="waring"></p>
       <div class="tc mt20">
@@ -27,10 +31,13 @@
   var action = require('../actions/action')
   var eventListener = require('../utils/eventListener')
   var config = require('../utils/globalConfig')
-  // var poptips = require('../components/Tooltips')
+  var poptips = require('../components/Tooltips')
 
   module.exports = {
     name: 'login',
+    components: {
+      poptips: poptips
+    },
     data: function () {
       return {
         downloadhost: config.api.downhost,
@@ -53,16 +60,15 @@
           password: this.password,
           adminOperate: 'WX'
         }
-        /*
-         if (this.userName === '') {
-         this.errorName = true
-         } else if (this.password === '') {
-         this.errorPass = true
-         } else if (this.userName === '' && this.password === '') {
-         this.errorName = true
-         this.errorPass = true
-         return false
-         }*/
+        /* if (this.userName === '') {
+          this.errorName = true
+        } else if (this.password === '') {
+          this.errorPass = true
+        } else if (this.userName === '' && this.password === '') {
+          this.errorName = true
+          this.errorPass = true
+          return false
+        }*/
         if (this.userName.trim() === '' && this.password.trim() === '') {
           this.errorName = true
           this.showPass = true
@@ -86,14 +92,15 @@
             } else if (res.assetAuth === 'YES') {
               route.router.go('/asset')
             } else {
-              that.errorMessage = '不正确的用户类型'
+              that.errorEmail = '不正确的用户类型'
             }
           }, function (err) {
             console.log(err)
+            that.showEmail = true
             if (err.errorCode === 10108) {
-              that.errorMessage = '账户密码不匹配'
+              that.errorEmail = '账户密码不匹配'
             } else {
-              that.errorMessage = err.errorMessage
+              that.errorEmail = err.errorMessage
             }
           })
         }
@@ -168,11 +175,11 @@ html {background-color:#f0f0f0;}
   height:50px;
   border-top:#ddd 1px solid;
   padding:0 3%;
-  input[type="text"], input[type="password"], input[type="tel"] {
+  input[type="text"], input[type="password"], input[type="tel"], input[type="email"] {
     height:48px; line-height:48px; border:none; width:100%;
   }
   .low {
-    input[type="text"], input[type="password"], input[type="tel"] {
+    input[type="text"], input[type="password"], input[type="tel"], input[type="email"]  {
       width:calc(100% - 100px);
     }
   }
@@ -185,7 +192,7 @@ html {background-color:#f0f0f0;}
 a.regbtn { display:block; text-align:center; height:46px; line-height:46px; position:fixed; bottom:20px; color:#f4551f; max-width:720px; min-width:320px; box-sizing:border-box;}
 .lcenter {left:50%; transform:translateX(-50%);}
 .log_box {
-  input[type="text"],input[type="password"],input[type="tel"] {
+  input[type="text"],input[type="password"],input[type="tel"], input[type="email"]  {
     width:100%;
   }
 }

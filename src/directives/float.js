@@ -14,7 +14,7 @@ module.exports = {
     var rangeArr = range.split('.')
     var intPart = rangeArr[0]
     var decPart = rangeArr[1]
-    var regStr = '^[+-]?\\d{0,' + intPart + '}(\\.\\d{0,' + decPart + '})?$'
+    var regStr = '^[+]?\\d{0,' + intPart + '}(\\.\\d{0,' + decPart + '})?$'
     var floatReg = new RegExp(regStr)
     if (!floatReg.test(newVal)) {
       this.params.floatTarget.value = this.el.value = oldVal

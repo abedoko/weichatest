@@ -46,7 +46,7 @@
         </div>
       </div>
       <div class="file_body plr5b bgf mt10 borderb1ddd bordert1ddd">
-        <p class="borderb1ddd ptb3b">附件({{files.length}}个)</p>
+        <p class="borderb1ddd ptb3b">附件({{files ? files.length : 0}}个)</p>
         <ul class="file_test pb10">
         <li v-for="file in files"><a :href="downloadhost + '/' + file.furl"><span>icon</span> <span>{{file.name}}</span></a> <span>({{file.sizeh}})</span></li>
         </ul>
