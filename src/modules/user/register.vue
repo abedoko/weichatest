@@ -13,7 +13,7 @@
         <div class="input_line linebok_p">
           <div class="log_left"><span class="mark_required">企业邮箱</span></div>
           <div class="log_right">
-            <input type="email" placeholder="请输入您的企业邮箱" v-model="regForm.account.value" onbeforepaste="clipboardData.setData('text', clipboardData.getData('text').replace(/[^/a-zA-Z/u4E00-/u9FA5]/g,''))">
+            <input type="email" placeholder="请输入您的企业邮箱" v-model="regForm.account.value" >
           </div>
           <poptips v-show="emailError"
                    :msg="emailInfo"
@@ -32,7 +32,7 @@
         </div>
         <div class="input_line linebok_p ">
           <div class="log_left"><span class="mark_required">密码</span></div>
-          <div class="log_right"><input type="password" placeholder="请输入密码" v-model="regForm.password.value" maxlength="20"></div>
+          <div class="log_right"><input type="password" placeholder="请输入密码" v-model="regForm.password.value" maxlength="20" @focus="pass = false"></div>
           <poptips v-show="pass"
                    :msg="passInfo"
                    placement="top-left"
@@ -559,17 +559,25 @@
       }
     },
     watch: {
-      userName: function (val, oldVal) {
+      'regForm.account.value': function (val, oldVal) {
         // this.show = true
-        var emailText = this.userName
+        var emailText = this.regForm.account.value
         if (emailText === '') {
-          this.showEmail = false
+          this.emailError = false
         } else {
           var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
           if (!reg.test(emailText)) {
-            this.errorEmail = '邮箱格式错误'
+            this.emailError = true
+            this.emailInfo = '邮箱格式错误'
+          } else {
+            this.emailError = false
           }
           this.showEmail = !reg.test(emailText)
+        }
+      },
+      'regForm.name.value': function (val) {
+        if (val !== '') {
+          this.comName = false
         }
       },
       password: function () {

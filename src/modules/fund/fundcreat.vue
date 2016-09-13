@@ -6,7 +6,6 @@
       <div class="input_line linebok_p">
         <div class="log_left"><span class="mark_required">拟预约额</span></div>
         <div class="log_right tens"><input type="text" v-model="commonForm.volume.value" placeholder="请输入预约额度" maxlength="12">
-
         </div>
       </div>
       <div class="input_line linebok_p borderb1ddd mb10">

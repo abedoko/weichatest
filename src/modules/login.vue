@@ -145,6 +145,7 @@
         var pass = this.password
         if (pass !== '') {
           this.showPass = false
+          this.showEmail = false
         }
       }
     },
@@ -189,7 +190,7 @@ html {background-color:#f0f0f0;}
 .linebok_p .log_right { width:73%;}
 
 .or_btn { background-color:#f4551e; color:#fff; border: none; text-align:center; height:45px; line-height:45px; font-size:20px;}
-a.regbtn { display:block; text-align:center; height:46px; line-height:46px; position:fixed; bottom:20px; color:#f4551f; max-width:720px; min-width:320px; box-sizing:border-box;}
+a.regbtn { display:block; text-align:center; height:46px; line-height:46px; position:fixed; bottom:20px; color:#f4551f; min-width:320px; box-sizing:border-box;}
 .lcenter {left:50%; transform:translateX(-50%);}
 .log_box {
   input[type="text"],input[type="password"],input[type="tel"], input[type="email"]  {
