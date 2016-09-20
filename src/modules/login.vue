@@ -96,17 +96,19 @@
             }
           }, function (err) {
             console.log(err)
-            that.showEmail = true
+            that.showPass = true
             if (err.errorCode === 10108) {
-              that.errorEmail = '账户密码不匹配'
+              that.errorPass = '账户密码不匹配'
             } else {
-              that.errorEmail = err.errorMessage
+              that.errorPass = err.errorMessage
             }
           })
         }
       },
       doKeyBinding: function () {
         var that = this
+        this.showPass = false
+        console.log(this.showPass)
         this._key_enter_ = eventListener.listen(document, 'keyup', function (e) {
           if (e.keyCode === 13) {
             that.doLogin()
