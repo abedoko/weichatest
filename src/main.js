@@ -10,7 +10,11 @@ var fund = require('./modules/fund/fund')
 var funddetail = require('./modules/fund/funddetail')
 var fundcreat = require('./modules/fund/fundcreat')
 Vue.use(Router)
-var router = new Router()
+var router = new Router({
+  hashbang: false,
+  history: true,
+  saveScrollPosition: true
+})
 config.router = router
 
 router.map({
