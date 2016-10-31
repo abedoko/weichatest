@@ -5,4 +5,4 @@ vue 项目
 
 预览  localhost:8888
 
-api: http://api.guohuaigroup.com/release/weichatcloud
+dev: http://api.guohuaigroup.com/release/weichatcloud
