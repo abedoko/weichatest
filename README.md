@@ -5,7 +5,7 @@ vue 项目
 
 预览  localhost:8888
 
-dev: http://api.guohuaigroup.com/release/weichatcloud
+dev: http://api.guohuaigroup.com/release/weichatcloud/#/login
 
 test_2
 123456
